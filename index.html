@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>yekatechteam</title>
+    <link rel="stylesheet" href="yktech.css">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>የካ አሽ/ተሽ ቴክኒክ ቡድን</h1>
+            <p class="subtitle">በቃት ያለውና ደሕንነቱ የተጠበቀ ተሽከርካሪ ለሑሉም</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#home">ዋና ገፅ</a></li>
+                <li><a href="#services">አገልግሎቶች</a></li>
+                <li><a href="#appointment">ምርመራ ቀጠሮ</a></li>
+                <li><a href="#announcements">አዲስ ነገር</a></li>
+                <li><a href="#contact">ያግኙን</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section id="home" class="hero-section">
+            <div class="container">
+                <h2>እንኳን ወደ የካ አሽ/ተሽ ቴክኒክ ምርመራ ቡድን በሰላም መጡ</h2>
+               
+                <p>የምርመራ ቀጠሮ ለማስያዝ ፎርም ለሙላት እንዲሑም ሰለተሽከርካሪ ምርመራ አገልግሎት መረጃ ለማግኘት ይሕንን ፖርታል ይጠቀሙ.</p>
+                <a href="#appointment" class="btn">አሑኑኑ የምርመራ ቀጠሮ ይያዙ</a>
+            </div>
+        </section>
+
+        <section id="services" class="section">
+            <div class="container">
+                <h2>አገልግሎቶች</h2>
+                <div class="service-grid">
+                    <div class="service-item">
+                        <h3>የአዲስ ተሽከርካሪ ምርመራ</h3>
+                        <p>ተሽከርካሪ ለመጀመሪያ ጊዜ ምዝገባ ሲመጣ ምርመራ</p>
+                    </div>
+                    <div class="service-item">
+                        <h3>የአገልግሎት ለውጥ ምርመራ</h3>
+                        <p>ነባር ተሽከርካሪ ከዚ በፊት ሲሰጥ የነበረውን አገልግሎት ለመቀየር የሚደረግ ምርመራ.</p>
+                    </div>
+                    <div class="service-item">
+                        <h3>የተሽከርካሪ ሞተርና ቻንሲ ለውጥ ምርመራ</h3>
+                        <p>በርጅና ወይም በአደጋ ወይም በሌላ ምክንያት የተሽከርካሪ ሞተርና ቻሲ ሲቀየር.</p>
+                                          
+                                           <div class="service-item">
+                        <h3>የተሽከርካሪ ዋጋ ግምት ምርመራ</h3>
+                        <p>የተሽከርካሪ ባለንብረት በሽያጭ ወይም በሌላ ሕጋዊ ምክንያት ለመለወጥ የሚደረግ ምርመራ</p>
+                   
+                </div>
+            </div>
+        </section>
+
+        <section id="appointment" class="section form-section">
+            <div class="container">
+                <h2>የምርመራ ቀጠሮ ማስያዣ</h2>
+                <form id="appointmentForm">
+                    <div class="form-group">
+                        <label for="fullName">የባለንብረት ስም</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="vehiclePlate">የተሽከርካሪ ሰሌዳ ቁጥር</label>
+                        <input type="text" id="vehiclePlate" name="vehiclePlate" required pattern="[A-Z0-9]{5,8}">
+                        <small>e.g., ABC-1234 or 1234567</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="inspectionDate">የቀጠሮ ቀን</label>
+                        <input type="date" id="inspectionDate" name="inspectionDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="inspectionTime">የቀጠሮ ሰአት</label>
+                        <input type="time" id="inspectionTime" name="inspectionTime" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="inspectionType">የጠየቁት አገልግሎት አይነት</label>
+                        <select id="inspectionType" name="inspectionType" required>
+                            <option value="">-- Select --</option>
+                            <option value="standard">አዲስ ተሽከርካሪ ምርመራ</option>
+                            <option value="commercial">የአገልግሎት ለውጥ ምርመራ</option>
+                            <option value="emissions">የሞተር እና የቻንሲ ለውጥ ምርመራ</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn">ቀጠሮ አስይዝ</button>
+                    <div id="formMessage" class="message"></div>
+                </form>
+            </div>
+        </section>
+
+        <section id="announcements" class="section announcements-section">
+            <div class="container">
+                <h2>ጠቃሚ ማስታወሻ</h2>
+                <div class="announcement-item">
+                    <h3>ማስታወሻ: የምርመራ አገልግሎት የሚሰጥበት ሰአት</h3>
+                    <p><ul>
+                        <li>ከሰኞ እስከ አርብ 2:00-10:00</li>
+                        <li>ቅዳሜ ከ2:00 አስከ 6:00</li>
+                    </ul></p>
+                </div>
+                <div class="announcement-item">
+                    <h3>ያስታውሱ:የምርመራ አገልግሎት ሲፈልጉ</h3>
+                    <p><ul>
+                        <li>ተሽከርካሪ ምርመራ አገልግሎት ሲፈልጉ ተሽከርካሪው በአካል መቅረብ እንዳለበት.</li>
+                        <li>ወይንም በልዩ ሑኔታ የአገልግሎት ክፍያ ብር 2500 በማክፈል በቦታው ባለሞያ በማስመደብ አገልግሎት ያገኛሉ</li></ul></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="container">
+            <p><strong>ያግኙን:</strong></p>
+            <p>መገናኛ የካ ክፍለከተማ አስተዳደር ሕንፃ ሑለተኛ ፎቅ</p>
+            <p>ቢሮ ቁጥር 208</p>
+            <p>ስልክ: +251966991658 | godinmehdufo@gmail.com</p>
+            <p>&copy; የአ/አ/አሽ/ተሽ/ፈ/ቁ ባለስልጣን የየካ ቅ/ፅ/ቤት ቴክኒክ ምርመራ ቡድን.</p><p></p>All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
